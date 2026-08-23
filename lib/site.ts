@@ -4,7 +4,7 @@
  * Swap PLAY_URL / SITE_URL / socials in one place.
  */
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tinylearn.app').replace(/\/$/, '')
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tinylearnapp.com').replace(/\/$/, '')
 
 export const site = {
   name: 'TinyLearn',
