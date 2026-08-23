@@ -1,4 +1,7 @@
 import type { MetadataRoute } from 'next'
+
+// Required by output: 'export' — emitted as a file at build time.
+export const dynamic = 'force-static'
 import { SITE_URL } from '@/lib/site'
 
 /**

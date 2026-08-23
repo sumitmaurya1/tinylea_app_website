@@ -2,6 +2,8 @@ import { ImageResponse } from 'next/og'
 import { OgFrame, OG_SIZE, OG_CONTENT_TYPE, loadDisplayFont } from '@/lib/og'
 import { getPost, getPostSlugs } from '@/lib/blog'
 
+// Required by output: 'export' — the image is generated at build time.
+export const dynamic = 'force-static'
 export const alt = 'TinyLearn blog article'
 export const size = OG_SIZE
 export const contentType = OG_CONTENT_TYPE
