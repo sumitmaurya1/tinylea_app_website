@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Hostinger shared hosting serves files, not Node — export a static bundle.
-  output: 'export',
-  // Trailing slashes make Apache/LiteSpeed resolve /about -> /about/index.html.
-  trailingSlash: true,
   images: {
-    // No Node server means no on-demand optimisation.
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [],
   },
   // three.js ships untranspiled ESM in places; keep the 3D chunk isolated & lazy.
   transpilePackages: ['three'],

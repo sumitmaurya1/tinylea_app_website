@@ -21,9 +21,5 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run build
-      - name: Verify the export
-        run: |
-          for f in index.html robots.txt sitemap.xml llms.txt opengraph-image.png .htaccess; do
-            test -s "out/$f" || { echo "missing or empty: out/$f"; exit 1; }
-          done
-          echo "pages: $(find out -name index.html | wc -l)"
+      - name: Verify the build output
+        run: test -f .next/BUILD_ID || { echo 'no .next/BUILD_ID — build did not complete'; exit 1; }
