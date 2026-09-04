@@ -68,7 +68,10 @@ export function getAllPosts(): Post[] {
   return getPostSlugs()
     .map(getPost)
     .filter((p): p is Post => Boolean(p))
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
+    // Two posts published the same day would otherwise fall back to readdir
+    // order, which is filesystem-dependent — the featured post could differ
+    // between a local build and the server. Break the tie on slug.
+    .sort((a, b) => +new Date(b.date) - +new Date(a.date) || a.slug.localeCompare(b.slug))
 }
 
 export function getAllTags(): string[] {
