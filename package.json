@@ -2,7 +2,7 @@
   "name": "tinylearn-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Marketing website for TinyLearn \u2014 kids learning app for ages 2-8 (English, Hindi, Marathi).",
+  "description": "Marketing website for TinyLearn — kids learning app for ages 2-8 (English, Hindi, Marathi).",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -20,6 +20,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
+    "github-slugger": "2.0.0",
     "gray-matter": "^4.0.3",
     "lenis": "^1.2.3",
     "lucide-react": "^0.483.0",

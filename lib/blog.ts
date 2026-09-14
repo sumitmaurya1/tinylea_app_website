@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
-import { slugify } from './utils'
+import GithubSlugger from 'github-slugger'
 
 export type PostFrontmatter = {
   title: string
@@ -22,9 +22,18 @@ export type Post = PostFrontmatter & {
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog')
 
-/** Pull H2/H3 out of raw MDX for the sticky table of contents. */
+/**
+ * Pull H2/H3 out of raw MDX for the sticky table of contents.
+ *
+ * The ids must match the ones rehype-slug puts on the rendered headings, so
+ * use the same slugger it does. A hand-rolled slugify drifted: it collapsed
+ * " — " to one hyphen where rehype-slug emits two, breaking the TOC link.
+ * One slugger per post also reproduces rehype-slug's -1/-2 suffixes when two
+ * headings share a title.
+ */
 function extractHeadings(source: string): Post['headings'] {
   const out: Post['headings'] = []
+  const slugger = new GithubSlugger()
   let inFence = false
   for (const line of source.split('\n')) {
     if (line.trim().startsWith('```')) {
@@ -35,7 +44,7 @@ function extractHeadings(source: string): Post['headings'] {
     const m = /^(#{2,3})\s+(.+?)\s*$/.exec(line)
     if (!m) continue
     const text = m[2].replace(/[*_`]/g, '')
-    out.push({ depth: m[1].length as 2 | 3, text, id: slugify(text) })
+    out.push({ depth: m[1].length as 2 | 3, text, id: slugger.slug(text) })
   }
   return out
 }
