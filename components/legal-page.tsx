@@ -6,12 +6,14 @@ import { formatDate } from '@/lib/utils'
 export function LegalPage({
   title,
   updated,
+  dateLabel = 'Last updated',
   intro,
   trail,
   children,
 }: {
   title: string
   updated: string
+  dateLabel?: string
   intro: string
   trail: { name: string; path: string }[]
   children: React.ReactNode
@@ -23,7 +25,7 @@ export function LegalPage({
         <Reveal className="max-w-3xl">
           <h1 className="text-4xl text-balance sm:text-5xl">{title}</h1>
           <p className="mt-4 text-xs font-medium uppercase tracking-[0.14em] text-[var(--ink-soft)]">
-            Last updated <time dateTime={updated}>{formatDate(updated)}</time>
+            {dateLabel} <time dateTime={updated}>{formatDate(updated)}</time>
           </p>
           <p className="mt-6 text-lg text-[var(--ink-soft)] text-pretty">{intro}</p>
         </Reveal>
