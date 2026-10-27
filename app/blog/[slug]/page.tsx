@@ -13,6 +13,7 @@ import { TableOfContents } from '@/components/blog/toc'
 import { ShareButtons } from '@/components/blog/share-buttons'
 import { CTASection } from '@/components/cta-section'
 import { PlayBadge } from '@/components/play-badge'
+import { AppScreen } from '@/components/blog/app-screen'
 import { Reveal, RevealGroup } from '@/components/motion/reveal'
 import { JsonLd } from '@/components/json-ld'
 
@@ -45,6 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 /** MDX components — styled to match the site rather than raw HTML defaults. */
 const mdxComponents = {
+  AppScreen,
   Callout: ({ title, children }: { title?: string; children: React.ReactNode }) => (
     <aside className="not-prose my-8 rounded-[22px] border-l-4 border-[var(--brand)] bg-[var(--brand-soft)]/50 px-6 py-5">
       {title ? <p className="font-display text-lg text-[var(--ink)]">{title}</p> : null}
